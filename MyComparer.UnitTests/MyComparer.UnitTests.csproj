@@ -58,7 +58,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Comparer\MyComparer.csproj">
+    <ProjectReference Include="..\MyComparer\MyComparer.csproj">
       <Project>{D78D290D-B892-4C60-82DB-E7A8C1FA7E67}</Project>
       <Name>MyComparer</Name>
     </ProjectReference>
