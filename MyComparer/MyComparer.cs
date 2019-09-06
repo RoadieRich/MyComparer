@@ -25,7 +25,7 @@ namespace MyComparer
             return new MyComparer<TObject>
             {
                 _equals = (x, y) => selector(x).Equals(selector(y)),
-                _getHashCode = x => selector(x).GetHashCode()
+                _getHashCode = x => { unchecked { return (int)2166136261 * 16777619 + selector(x).GetHashCode(); } }
             };
         }
 
@@ -41,7 +41,7 @@ namespace MyComparer
             var oldGetHashCode = (Func<TObject, int>)_getHashCode.Clone();
 
             _equals = (x, y) => oldEquals(x, y) && selector(x).Equals(selector(y));
-            _getHashCode = x => oldGetHashCode(x) & selector(x).GetHashCode();
+            _getHashCode = x => { unchecked { return oldGetHashCode(x) * 16777619 + selector(x).GetHashCode(); } };
 
             return this;
         }
