@@ -37,8 +37,8 @@ namespace MyComparer
         /// <returns>A <see cref="MyComparer{TObject}"/> object</returns>
         public MyComparer<TObject> And<TProperty>(Func<TObject, TProperty> selector)
         {
-            var oldEquals = (Func<TObject, TObject, bool>)_equals.Clone();
-            var oldGetHashCode = (Func<TObject, int>)_getHashCode.Clone();
+            var oldEquals = (Func<TObject, TObject, bool>)_equals;
+            var oldGetHashCode = (Func<TObject, int>)_getHashCode;
 
             _equals = (x, y) => oldEquals(x, y) && selector(x).Equals(selector(y));
             _getHashCode = x => { unchecked { return oldGetHashCode(x) * 16777619 + selector(x).GetHashCode(); } };
