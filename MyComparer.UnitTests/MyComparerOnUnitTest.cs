@@ -39,13 +39,6 @@ namespace MyComparer.UnitTests
         }
 
         [TestMethod]
-        public void TestGetHashcodeReturnsInt32()
-        {
-            IEqualityComparer<(int, int)> comparer = MyComparer<(int, int)>.On(t => t.Item1);
-            Assert.That.IsOfType<int>(comparer.GetHashCode(Tuple1));
-        }
-
-        [TestMethod]
         public void TestGetHashcodeReturnsDifferentValuesForDifferentInputs()
         {
             IEqualityComparer<(int, int)> comparer = MyComparer<(int, int)>.On(t => t.Item2);
